@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
             useMaterial3: true,
           ),
           themeMode: value,
-          initialRoute: '/home',
+          initialRoute: '/',
           onGenerateRoute: (settings) {
             const begin = Offset(0, -1.0);
             const end = Offset.zero;
