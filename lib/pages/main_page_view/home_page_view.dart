@@ -9,14 +9,12 @@ class HomePageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(50),
-      child: getSize(context) == 1 ? _oneCol() : _threeCol(context),
-    );
+    return getSize(context) == 1 ? _oneCol() : _threeCol(context);
   }
 
   _oneCol() {
     return ListView(
+      padding: const EdgeInsets.all(50),
       children: const [
         Introduce(),
         MyPic(),
@@ -30,6 +28,9 @@ class HomePageView extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
+        const SizedBox(
+          width: 10,
+        ),
         const Expanded(child: Introduce()),
         const SizedBox(
           width: 5,
@@ -39,14 +40,17 @@ class HomePageView extends StatelessWidget {
           height: size.height,
           child: const Column(
             children: [
-              Expanded(flex: 2, child: MyMusic()),
+              Expanded(flex: 4, child: MyMusic()),
               SizedBox(
                 height: 5,
               ),
-              Expanded(flex: 1, child: MyPic()),
+              Expanded(flex: 3, child: MyPic()),
             ],
           ),
-        )
+        ),
+        const SizedBox(
+          width: 10,
+        ),
       ],
     );
   }

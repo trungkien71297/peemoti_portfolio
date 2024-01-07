@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:peemoti/application/constants.dart';
-import 'package:peemoti/widgets/skill_progress.dart';
+import 'package:peemoti/widgets/text_with_icon.dart';
 
-class TechnicalSkill extends StatelessWidget {
-  const TechnicalSkill({super.key});
+class Interests extends StatelessWidget {
+  const Interests({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,28 +17,36 @@ class TechnicalSkill extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text('Technical skills', style: StyleConstant.header1),
+            Text(
+              'Interests',
+              style: StyleConstant.header1,
+            ),
             Spacer(),
-            SkillProgress(
-                icon: AssetsConstants.flutter, title: 'Flutter', progress: 0.8),
+            TextWithIcon(
+                icon: FontAwesomeIcons.gamepad, text: Text('Dota 2, PES')),
             Divider(
               indent: 10,
               endIndent: 10,
             ),
-            SkillProgress(
-                icon: AssetsConstants.dart, title: 'Dart', progress: 0.8),
+            TextWithIcon(
+                icon: FontAwesomeIcons.film, text: Text('Watching moive')),
             Divider(
               indent: 10,
               endIndent: 10,
             ),
-            SkillProgress(
-                icon: AssetsConstants.ios, title: 'iOS', progress: 0.5),
+            TextWithIcon(
+                icon: FontAwesomeIcons.futbol, text: Text('Manchester United')),
             Divider(
               indent: 10,
               endIndent: 10,
             ),
-            SkillProgress(
-                icon: AssetsConstants.swift, title: 'Swift', progress: 0.5),
+            TextWithIcon(icon: FontAwesomeIcons.book, text: Text('Reading')),
+            Divider(
+              indent: 10,
+              endIndent: 10,
+            ),
+            TextWithIcon(
+                icon: FontAwesomeIcons.music, text: Text('Listening music')),
             Spacer(),
           ]),
     );

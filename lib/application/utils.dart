@@ -5,7 +5,7 @@ int getSize(BuildContext context) {
   final size = MediaQuery.of(context).size;
   if (size.width < 600) {
     return 1;
-  } else if (size.width >= 600 && size.width <= 840) {
+  } else if (size.width >= 600 && size.width <= 900) {
     return 2;
   } else {
     return 3;

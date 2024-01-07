@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:peemoti/application/app.dart';
 import 'package:peemoti/application/color_schemes.g.dart';
+import 'package:peemoti/application/constants.dart';
 import 'package:peemoti/pages/home_page.dart';
 import 'package:peemoti/pages/loading_page.dart';
 
@@ -20,11 +21,13 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           title: 'Peemoti',
           theme: ThemeData(
+            fontFamily: AppConstants.fontMain,
             colorScheme: lightColorScheme,
             scaffoldBackgroundColor: lightColorScheme.background,
             useMaterial3: true,
           ),
           darkTheme: ThemeData(
+            fontFamily: AppConstants.fontMain,
             colorScheme: darkColorScheme,
             scaffoldBackgroundColor: darkColorScheme.background,
             useMaterial3: true,

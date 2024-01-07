@@ -9,7 +9,7 @@ class MyMusic extends StatefulWidget {
   State<MyMusic> createState() => _MyMusicState();
 }
 
-class _MyMusicState extends State<MyMusic> with AutomaticKeepAliveClientMixin {
+class _MyMusicState extends State<MyMusic> {
   late final WebViewController _controller;
   @override
   void initState() {
@@ -20,11 +20,7 @@ class _MyMusicState extends State<MyMusic> with AutomaticKeepAliveClientMixin {
 
   @override
   Widget build(BuildContext context) {
-    super.build;
     return AspectRatio(
         aspectRatio: 3 / 4, child: WebViewWidget(controller: _controller));
   }
-
-  @override
-  bool get wantKeepAlive => true;
 }

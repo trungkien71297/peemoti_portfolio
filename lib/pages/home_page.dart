@@ -4,7 +4,7 @@ import 'package:peemoti/application/utils.dart';
 import 'package:peemoti/pages/main_page_view/about_page_view.dart';
 import 'package:peemoti/pages/main_page_view/home_page_view.dart';
 import 'package:peemoti/pages/main_page_view/project_page_view.dart';
-import 'package:peemoti/widgets/change_language_mode.dart';
+// import 'package:peemoti/widgets/change_language_mode.dart';
 import 'package:peemoti/widgets/change_theme_mode.dart';
 
 class HomePage extends StatefulWidget {
@@ -18,7 +18,11 @@ class _HomePageState extends State<HomePage> {
   final _pages = const [HomePageView(), AboutPageView(), ProjectPageView()];
 
   late PageController _pageController;
-  final actions = [const ChangeLanguageMode(), const ChangeThemeMode()];
+  final actions = [
+    // const ChangeLanguageMode(),
+    const ChangeThemeMode()
+  ];
+  int index = 0;
   @override
   void initState() {
     super.initState();
@@ -74,24 +78,34 @@ class _HomePageState extends State<HomePage> {
             ? Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  TextButton(
+                  OutlinedButton(
+                      style: OutlinedButton.styleFrom(
+                          side: index == 0 ? null : BorderSide.none),
                       onPressed: () => _animateToPage(0),
                       child: const Text('Home')),
                   const SizedBox(
                     width: 20,
                   ),
-                  TextButton(
+                  OutlinedButton(
+                      style: OutlinedButton.styleFrom(
+                          side: index == 1 ? null : BorderSide.none),
                       onPressed: () => _animateToPage(1),
                       child: const Text('About')),
                   const SizedBox(
                     width: 20,
                   ),
-                  TextButton(
+                  OutlinedButton(
+                      style: OutlinedButton.styleFrom(
+                          side: index == 2 ? null : BorderSide.none),
                       onPressed: () => _animateToPage(2),
                       child: const Text('Projects')),
                 ],
               )
-            : null,
+            : Text(
+                _getTitle(),
+                style:
+                    const TextStyle(fontWeight: FontWeight.w600, fontSize: 25),
+              ),
       ),
       drawer: (getSize(context) > 1)
           ? null
@@ -100,24 +114,53 @@ class _HomePageState extends State<HomePage> {
               margin: const EdgeInsets.all(20),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: Theme.of(context)
-                      .colorScheme
-                      .surfaceVariant
-                      .withOpacity(0.9)),
+                  color: Theme.of(context).colorScheme.surfaceVariant),
               child: Column(
                 children: <Widget>[
                   const DrawerHeader(
-                      child: Center(child: Text('NGUYEN TRUNG KIEN'))),
+                      child: Center(
+                          child:
+                              Text('Quốc gia hưng vong\nThất phu hữu trách'))),
                   ListTile(
-                    title: const Text('Home'),
+                    title: Container(
+                        padding: const EdgeInsets.all(5.0),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            border: index == 0
+                                ? Border.all(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onSurfaceVariant)
+                                : null),
+                        child: const Center(child: Text('Home'))),
                     onTap: () => _animateToPage(0),
                   ),
                   ListTile(
-                    title: const Text('About'),
+                    title: Container(
+                        padding: const EdgeInsets.all(5.0),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            border: index == 1
+                                ? Border.all(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onSurfaceVariant)
+                                : null),
+                        child: const Center(child: Text('About'))),
                     onTap: () => _animateToPage(1),
                   ),
                   ListTile(
-                    title: const Text('Projects'),
+                    title: Container(
+                        padding: const EdgeInsets.all(5.0),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            border: index == 2
+                                ? Border.all(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onSurfaceVariant)
+                                : null),
+                        child: const Center(child: Text('Projects'))),
                     onTap: () => _animateToPage(2),
                   ),
                   const Spacer(),
@@ -144,8 +187,24 @@ class _HomePageState extends State<HomePage> {
   }
 
   _animateToPage(int index) {
+    setState(() {
+      this.index = index;
+    });
     _pageController.animateToPage(index,
         duration: const Duration(milliseconds: 200), curve: Curves.easeOutBack);
+  }
+
+  String _getTitle() {
+    switch (index) {
+      case 0:
+        return 'Home';
+      case 1:
+        return 'About';
+      case 2:
+        return 'Projects';
+      default:
+        return '';
+    }
   }
 
   @override
