@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:peemoti/application/constants.dart';
-import 'package:peemoti/application/utils.dart';
+import 'package:peemoti/application/application.dart';
 import 'package:peemoti/pages/main_page_view/about_page_view.dart';
 import 'package:peemoti/pages/main_page_view/home_page_view.dart';
 import 'package:peemoti/pages/main_page_view/project_page_view.dart';
-// import 'package:peemoti/widgets/change_language_mode.dart';
+import 'package:peemoti/widgets/change_language_mode.dart';
 import 'package:peemoti/widgets/change_theme_mode.dart';
 
 class HomePage extends StatefulWidget {
@@ -18,10 +17,7 @@ class _HomePageState extends State<HomePage> {
   final _pages = const [HomePageView(), AboutPageView(), ProjectPageView()];
 
   late PageController _pageController;
-  final actions = [
-    // const ChangeLanguageMode(),
-    const ChangeThemeMode()
-  ];
+  final actions = [const ChangeLanguageMode(), const ChangeThemeMode()];
   int index = 0;
   @override
   void initState() {
@@ -82,7 +78,7 @@ class _HomePageState extends State<HomePage> {
                       style: OutlinedButton.styleFrom(
                           side: index == 0 ? null : BorderSide.none),
                       onPressed: () => _animateToPage(0),
-                      child: const Text('Home')),
+                      child: Text(AppLocalizations.of(context)!.home)),
                   const SizedBox(
                     width: 20,
                   ),
@@ -90,7 +86,7 @@ class _HomePageState extends State<HomePage> {
                       style: OutlinedButton.styleFrom(
                           side: index == 1 ? null : BorderSide.none),
                       onPressed: () => _animateToPage(1),
-                      child: const Text('About')),
+                      child: Text(AppLocalizations.of(context)!.about)),
                   const SizedBox(
                     width: 20,
                   ),
@@ -98,7 +94,7 @@ class _HomePageState extends State<HomePage> {
                       style: OutlinedButton.styleFrom(
                           side: index == 2 ? null : BorderSide.none),
                       onPressed: () => _animateToPage(2),
-                      child: const Text('Projects')),
+                      child: Text(AppLocalizations.of(context)!.projects)),
                 ],
               )
             : Text(
@@ -132,7 +128,8 @@ class _HomePageState extends State<HomePage> {
                                         .colorScheme
                                         .onSurfaceVariant)
                                 : null),
-                        child: const Center(child: Text('Home'))),
+                        child: Center(
+                            child: Text(AppLocalizations.of(context)!.home))),
                     onTap: () => _animateToPage(0),
                   ),
                   ListTile(
@@ -146,7 +143,8 @@ class _HomePageState extends State<HomePage> {
                                         .colorScheme
                                         .onSurfaceVariant)
                                 : null),
-                        child: const Center(child: Text('About'))),
+                        child: Center(
+                            child: Text(AppLocalizations.of(context)!.about))),
                     onTap: () => _animateToPage(1),
                   ),
                   ListTile(
@@ -160,7 +158,9 @@ class _HomePageState extends State<HomePage> {
                                         .colorScheme
                                         .onSurfaceVariant)
                                 : null),
-                        child: const Center(child: Text('Projects'))),
+                        child: Center(
+                            child:
+                                Text(AppLocalizations.of(context)!.projects))),
                     onTap: () => _animateToPage(2),
                   ),
                   const Spacer(),
@@ -197,11 +197,11 @@ class _HomePageState extends State<HomePage> {
   String _getTitle() {
     switch (index) {
       case 0:
-        return 'Home';
+        return AppLocalizations.of(context)!.home;
       case 1:
-        return 'About';
+        return AppLocalizations.of(context)!.about;
       case 2:
-        return 'Projects';
+        return AppLocalizations.of(context)!.projects;
       default:
         return '';
     }

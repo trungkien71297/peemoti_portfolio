@@ -17,7 +17,7 @@ class SkillProgress extends StatelessWidget {
         Image.asset(
           icon,
           height: 30,
-          color: App.instance.themeMode.value == ThemeMode.dark
+          color: App.instance.themeMode == ThemeMode.dark
               ? Colors.white
               : Colors.black,
         ),

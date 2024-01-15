@@ -1,42 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:peemoti/application/application.dart';
 
-class ChangeLanguageMode extends StatefulWidget {
+class ChangeLanguageMode extends StatelessWidget {
   const ChangeLanguageMode({super.key});
-  @override
-  State<ChangeLanguageMode> createState() => _ChangeLanguageModeState();
-}
 
-class _ChangeLanguageModeState extends State<ChangeLanguageMode> {
-  final languages = const {'vi': 'Tiếng Việt', 'en': 'English'};
-  String code = 'en';
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 140,
-      child: DropdownButtonFormField(
-          value: code,
-          decoration: const InputDecoration(
-            border: InputBorder.none,
-            prefixIcon: Icon(
-              Icons.translate,
-              size: 15,
-            ),
+    return ListenableBuilder(
+      listenable: App.instance,
+      builder: (context, child) => Row(
+        children: [
+          const SizedBox(
+            width: 5,
           ),
-          isExpanded: true,
-          focusColor: Colors.transparent,
-          items: languages.entries
-              .map((e) => DropdownMenuItem(
-                  value: e.key,
-                  child: Text(
-                    e.value,
-                    style: const TextStyle(fontSize: 12),
-                  )))
-              .toList(),
-          onChanged: (value) {
-            setState(() {
-              code = value ?? 'en';
-            });
-          }),
+          const Text('Vi'),
+          const SizedBox(
+            width: 5,
+          ),
+          Switch(
+              value: App.instance.languageSystem == LanguageSystem.en,
+              onChanged: (value) {
+                App.instance.onChangeLanguage(
+                    value ? LanguageSystem.en : LanguageSystem.vi);
+              }),
+          const SizedBox(
+            width: 5,
+          ),
+          const Text('En'),
+          const SizedBox(
+            width: 5,
+          ),
+        ],
+      ),
     );
   }
 }

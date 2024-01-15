@@ -4,6 +4,7 @@ import 'package:peemoti/application/color_schemes.g.dart';
 import 'package:peemoti/application/constants.dart';
 import 'package:peemoti/pages/home_page.dart';
 import 'package:peemoti/pages/loading_page.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,11 +16,14 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ValueListenableBuilder(
-      valueListenable: App.instance.themeMode,
-      builder: (BuildContext context, ThemeMode value, Widget? child) {
+    return ListenableBuilder(
+      listenable: App.instance,
+      builder: (BuildContext context, Widget? child) {
         return MaterialApp(
           title: 'Peemoti',
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          locale: App.instance.languageSystem.value,
           theme: ThemeData(
             fontFamily: AppConstants.fontMain,
             colorScheme: lightColorScheme,
@@ -32,7 +36,7 @@ class MyApp extends StatelessWidget {
             scaffoldBackgroundColor: darkColorScheme.background,
             useMaterial3: true,
           ),
-          themeMode: value,
+          themeMode: App.instance.themeMode,
           initialRoute: '/',
           onGenerateRoute: (settings) {
             const begin = Offset(0, -1.0);

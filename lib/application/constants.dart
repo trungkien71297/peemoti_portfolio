@@ -30,3 +30,12 @@ class StyleConstant {
   static const header1 = TextStyle(fontSize: 20, fontWeight: FontWeight.w500);
   static const header2 = TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
 }
+
+enum LanguageSystem {
+  en(Locale('en'), 'English'),
+  vi(Locale('vi'), 'Tiếng Việt');
+
+  const LanguageSystem(this.value, this.name);
+  final Locale value;
+  final String name;
+}

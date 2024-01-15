@@ -6,9 +6,9 @@ class ChangeThemeMode extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ValueListenableBuilder(
-      valueListenable: App.instance.themeMode,
-      builder: (context, value, child) => Row(
+    return ListenableBuilder(
+      listenable: App.instance,
+      builder: (context, child) => Row(
         children: [
           const SizedBox(
             width: 5,
@@ -21,10 +21,10 @@ class ChangeThemeMode extends StatelessWidget {
             width: 5,
           ),
           Switch(
-              value: value == ThemeMode.light,
+              value: App.instance.themeMode == ThemeMode.light,
               onChanged: (value) {
-                App.instance.themeMode.value =
-                    value ? ThemeMode.light : ThemeMode.dark;
+                App.instance
+                    .onChangeTheme(value ? ThemeMode.light : ThemeMode.dark);
               }),
           const SizedBox(
             width: 5,

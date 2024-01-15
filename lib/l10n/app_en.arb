@@ -1,0 +1,14 @@
+{
+  "home": "Home",
+  "@home":{
+    "description": "Home button"
+  },
+  "about": "About",
+  "@about":{
+    "description": "About button"
+  },
+  "projects": "Projects",
+  "@projects":{
+    "description": "Project button"
+  }
+}
